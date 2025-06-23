@@ -126,6 +126,7 @@ No modules.
 | Name | Type |
 |------|------|
 | [azurerm_api_management_api.api](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/api_management_api) | resource |
+| [azurerm_api_management_api_policy.api_policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/api_management_api_policy) | resource |
 
 ## Inputs
 
@@ -143,6 +144,7 @@ No modules.
 | <a name="input_description"></a> [description](#input\_description) | description of the API | `string` | `null` | no |
 | <a name="input_import"></a> [import](#input\_import) | options for importing an API | <pre>object({<br>    content_format = string<br>    content_value  = string<br>  })</pre> | `null` | no |
 | <a name="input_license"></a> [license](#input\_license) | license information for the API | <pre>object({<br>    name = optional(string, null)<br>    url  = optional(string, null)<br>  })</pre> | `null` | no |
+| <a name="input_policy"></a> [policy](#input\_policy) | Policy to apply to the API. Either xml\_content or xml\_link must be provided | <pre>object({<br>    xml_content = optional(string)<br>    xml_link    = optional(string)<br>  })</pre> | `null` | no |
 | <a name="input_service_url"></a> [service\_url](#input\_service\_url) | the backend service URL for the API | `string` | `null` | no |
 | <a name="input_soap_pass_through"></a> [soap\_pass\_through](#input\_soap\_pass\_through) | whether to pass through SOAP requests without transformation | `bool` | `null` | no |
 | <a name="input_subscription_required"></a> [subscription\_required](#input\_subscription\_required) | whether the API requires a subscription key for access | `bool` | `true` | no |
@@ -159,6 +161,7 @@ No modules.
 |------|-------------|
 | <a name="output_api_id"></a> [api\_id](#output\_api\_id) | The ID of the API Management API resource. |
 | <a name="output_api_name"></a> [api\_name](#output\_api\_name) | The name of the API Management API resource. |
+| <a name="output_api_path"></a> [api\_path](#output\_api\_path) | The path of the API Management API resource. |
 | <a name="output_revision"></a> [revision](#output\_revision) | The revision of the API Management API resource. |
 | <a name="output_is_current"></a> [is\_current](#output\_is\_current) | Indicates whether the API Management API is the current revision. |
 | <a name="output_version"></a> [version](#output\_version) | The version of the API Management API resource. |

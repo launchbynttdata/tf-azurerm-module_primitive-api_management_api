@@ -37,6 +37,10 @@ output "api_name" {
   value = module.apim_api.api_name
 }
 
+output "api_path" {
+  value = module.apim_api.api_path
+}
+
 output "is_current" {
   value = module.apim_api.is_current
 }

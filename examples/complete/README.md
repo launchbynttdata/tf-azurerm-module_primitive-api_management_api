@@ -64,6 +64,7 @@ No resources.
 | <a name="input_description"></a> [description](#input\_description) | description of the API | `string` | `null` | no |
 | <a name="input_import"></a> [import](#input\_import) | options for importing an API | <pre>object({<br>    content_format = string<br>    content_value  = string<br>  })</pre> | `null` | no |
 | <a name="input_license"></a> [license](#input\_license) | license information for the API | <pre>object({<br>    name = optional(string, null)<br>    url  = optional(string, null)<br>  })</pre> | `null` | no |
+| <a name="input_policy"></a> [policy](#input\_policy) | Policy to apply to the API. Either xml\_content or xml\_link must be provided | <pre>object({<br>    xml_content = optional(string)<br>    xml_link    = optional(string)<br>  })</pre> | `null` | no |
 | <a name="input_service_url"></a> [service\_url](#input\_service\_url) | the backend service URL for the API | `string` | `null` | no |
 | <a name="input_soap_pass_through"></a> [soap\_pass\_through](#input\_soap\_pass\_through) | whether to pass through SOAP requests without transformation | `bool` | `null` | no |
 | <a name="input_subscription_required"></a> [subscription\_required](#input\_subscription\_required) | whether the API requires a subscription key for access | `bool` | `true` | no |
@@ -85,5 +86,6 @@ No resources.
 | <a name="output_resource_group_name"></a> [resource\_group\_name](#output\_resource\_group\_name) | n/a |
 | <a name="output_api_id"></a> [api\_id](#output\_api\_id) | n/a |
 | <a name="output_api_name"></a> [api\_name](#output\_api\_name) | n/a |
+| <a name="output_api_path"></a> [api\_path](#output\_api\_path) | n/a |
 | <a name="output_is_current"></a> [is\_current](#output\_is\_current) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

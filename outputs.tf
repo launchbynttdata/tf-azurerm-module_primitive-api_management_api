@@ -8,6 +8,11 @@ output "api_name" {
   value       = azurerm_api_management_api.api.name
 }
 
+output "api_path" {
+  description = "The path of the API Management API resource."
+  value       = azurerm_api_management_api.api.path
+}
+
 output "revision" {
   description = "The revision of the API Management API resource."
   value       = azurerm_api_management_api.api.revision

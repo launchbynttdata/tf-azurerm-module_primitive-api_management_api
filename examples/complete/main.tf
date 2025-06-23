@@ -88,5 +88,9 @@ module "apim_api" {
     content_value  = file("terratest-api.json")
   }
 
+  policy = {
+    xml_content = file("terratest-api.policy.xml")
+  }
+
   depends_on = [module.apim]
 }

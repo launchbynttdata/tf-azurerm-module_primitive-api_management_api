@@ -4,3 +4,5 @@ name         = "terratest-api"
 display_name = "Terratest API"
 path         = "terratest/v1"
 revision     = "1"
+
+subscription_required = false

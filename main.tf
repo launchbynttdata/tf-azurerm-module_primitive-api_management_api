@@ -43,3 +43,14 @@ resource "azurerm_api_management_api" "api" {
     }
   }
 }
+
+resource "azurerm_api_management_api_policy" "api_policy" {
+  count = var.policy != null ? 1 : 0
+
+  api_name            = azurerm_api_management_api.api.name
+  api_management_name = var.api_management_name
+  resource_group_name = var.resource_group_name
+
+  xml_content = try(var.policy.xml_content, null)
+  xml_link    = try(var.policy.xml_link, null)
+}

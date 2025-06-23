@@ -213,6 +213,20 @@ variable "license" {
   default     = null
 }
 
+variable "policy" {
+  type = object({
+    xml_content = optional(string)
+    xml_link    = optional(string)
+  })
+  description = "Policy to apply to the API. Either xml_content or xml_link must be provided"
+  default     = null
+
+  validation {
+    condition     = var.policy == null || try(one(compact([var.policy.xml_content, var.policy.xml_link])) != null, false)
+    error_message = "One of xml_content or xml_link must be provided, but not both"
+  }
+}
+
 variable "service_url" {
   type        = string
   description = "the backend service URL for the API"

@@ -5,5 +5,17 @@
     "title": "Terratest API",
     "description": "API for use with Terratest"
   },
-  "paths": {}
+  "paths": {
+    "/": {
+      "get": {
+        "description": "Gets the root of the API",
+        "operationId": "getRoot",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    }
+  }
 }
