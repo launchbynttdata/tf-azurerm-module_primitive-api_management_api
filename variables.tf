@@ -62,7 +62,7 @@ variable "path" {
   description = "path of the API"
   default     = null
   validation {
-    condition     = can(regex("^[a-zA-Z0-9\\-\\/]{1,50}$", var.path))
+    condition     = can(regex("^[a-zA-Z0-9/-]{1,50}$", var.path))
     error_message = "The path can only contain alphanumeric characters, dashes, or forward slashes and must be between 1 and 50 characters long."
   }
 }
