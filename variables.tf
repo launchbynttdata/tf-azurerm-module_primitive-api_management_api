@@ -198,3 +198,26 @@ variable "source_api_id" {
     error_message = "The source API ID can only contain alphanumeric characters and dashes and must be between 1 and 50 characters long."
   }
 }
+
+variable "operations" {
+  description = "List of operations to create for the API"
+  type = list(object({
+    operation_id = string
+    display_name = string
+    method       = string
+    url_template = string
+    description  = optional(string)
+  }))
+  default = []
+}
+
+variable "operation_policies" {
+  description = "List of operation policies to apply"
+  type = list(object({
+    api_name     = string
+    operation_id = string
+    xml_content  = optional(string)
+    xml_link     = optional(string)
+  }))
+  default = []
+}

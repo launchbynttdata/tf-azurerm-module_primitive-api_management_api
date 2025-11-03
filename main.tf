@@ -54,3 +54,37 @@ resource "azurerm_api_management_api_policy" "api_policy" {
   xml_content = try(var.policy.xml_content, null)
   xml_link    = try(var.policy.xml_link, null)
 }
+
+resource "azurerm_api_management_api_operation" "operations" {
+  for_each = {
+    for op in var.operations :
+    op.operation_id => op
+  }
+
+  operation_id        = each.value.operation_id
+  api_name            = azurerm_api_management_api.api.name
+  api_management_name = var.api_management_name
+  resource_group_name = var.resource_group_name
+  display_name        = each.value.display_name
+  method              = each.value.method
+  url_template        = each.value.url_template
+  description         = try(each.value.description, null)
+}
+
+resource "azurerm_api_management_api_operation_policy" "operation_policies" {
+  for_each = {
+    for op in var.operation_policies :
+    "${op.api_name}-${op.operation_id}" => op
+    if length(trim(op.operation_id, " ")) > 0
+  }
+
+  api_name            = azurerm_api_management_api_operation.operations[each.value.operation_id].api_name
+  api_management_name = var.api_management_name
+  resource_group_name = var.resource_group_name
+  operation_id        = each.value.operation_id
+
+  xml_content = try(each.value.xml_content, null)
+  xml_link    = try(each.value.xml_link, null)
+
+  depends_on = [azurerm_api_management_api_operation.operations]
+}

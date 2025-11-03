@@ -103,7 +103,7 @@ If `make check` target is successful, developer is good to commit the code to pr
 - runs `conftests`. `conftests` make sure `policy` checks are successful.
 - runs `terratest`. This is integration test suit.
 - runs `opa` tests
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -126,6 +126,8 @@ No modules.
 | Name | Type |
 |------|------|
 | [azurerm_api_management_api.api](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/api_management_api) | resource |
+| [azurerm_api_management_api_operation.operations](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/api_management_api_operation) | resource |
+| [azurerm_api_management_api_operation_policy.operation_policies](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/api_management_api_operation_policy) | resource |
 | [azurerm_api_management_api_policy.api_policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/api_management_api_policy) | resource |
 
 ## Inputs
@@ -154,6 +156,8 @@ No modules.
 | <a name="input_revision_description"></a> [revision\_description](#input\_revision\_description) | description of the API revision | `string` | `null` | no |
 | <a name="input_version_description"></a> [version\_description](#input\_version\_description) | description of the API version | `string` | `null` | no |
 | <a name="input_source_api_id"></a> [source\_api\_id](#input\_source\_api\_id) | the ID of the source API from which this API is derived | `string` | `null` | no |
+| <a name="input_operations"></a> [operations](#input\_operations) | List of operations to create for the API | <pre>list(object({<br>    operation_id = string<br>    display_name = string<br>    method       = string<br>    url_template = string<br>    description  = optional(string)<br>  }))</pre> | `[]` | no |
+| <a name="input_operation_policies"></a> [operation\_policies](#input\_operation\_policies) | List of operation policies to apply | <pre>list(object({<br>    api_name     = string<br>    operation_id = string<br>    xml_content  = optional(string)<br>    xml_link     = optional(string)<br>  }))</pre> | `[]` | no |
 
 ## Outputs
 
@@ -166,4 +170,4 @@ No modules.
 | <a name="output_is_current"></a> [is\_current](#output\_is\_current) | Indicates whether the API Management API is the current revision. |
 | <a name="output_version"></a> [version](#output\_version) | The version of the API Management API resource. |
 | <a name="output_version_set_id"></a> [version\_set\_id](#output\_version\_set\_id) | The ID of the version set to which this API belongs. |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

@@ -13,7 +13,7 @@ provider "azurerm" {
 ```
 
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -88,4 +88,4 @@ No resources.
 | <a name="output_api_name"></a> [api\_name](#output\_api\_name) | n/a |
 | <a name="output_api_path"></a> [api\_path](#output\_api\_path) | n/a |
 | <a name="output_is_current"></a> [is\_current](#output\_is\_current) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
