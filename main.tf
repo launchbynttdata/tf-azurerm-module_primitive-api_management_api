@@ -71,14 +71,22 @@ resource "azurerm_api_management_api_operation" "operations" {
   description         = try(each.value.description, null)
 }
 
+resource "time_sleep" "wait_for_import_operations" {
+  count = var.import != null && length(var.operations) == 0 ? 1 : 0
+
+  depends_on = [azurerm_api_management_api.api]
+
+  create_duration = "120s"
+}
+
 resource "azurerm_api_management_api_operation_policy" "operation_policies" {
   for_each = {
     for op in var.operation_policies :
-    "${op.api_name}-${op.operation_id}" => op
+    op.operation_id => op
     if length(trim(op.operation_id, " ")) > 0
   }
 
-  api_name            = azurerm_api_management_api_operation.operations[each.value.operation_id].api_name
+  api_name            = azurerm_api_management_api.api.name
   api_management_name = var.api_management_name
   resource_group_name = var.resource_group_name
   operation_id        = each.value.operation_id
@@ -86,5 +94,8 @@ resource "azurerm_api_management_api_operation_policy" "operation_policies" {
   xml_content = try(each.value.xml_content, null)
   xml_link    = try(each.value.xml_link, null)
 
-  depends_on = [azurerm_api_management_api_operation.operations]
+  depends_on = [
+    azurerm_api_management_api.api,
+    azurerm_api_management_api_operation.operations
+  ]
 }

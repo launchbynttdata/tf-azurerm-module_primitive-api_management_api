@@ -110,12 +110,14 @@ If `make check` target is successful, developer is good to commit the code to pr
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.0 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~>3.117 |
+| <a name="requirement_time"></a> [time](#requirement\_time) | ~> 0.9 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.117.1 |
+| <a name="provider_time"></a> [time](#provider\_time) | 0.13.1 |
 
 ## Modules
 
@@ -129,6 +131,7 @@ No modules.
 | [azurerm_api_management_api_operation.operations](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/api_management_api_operation) | resource |
 | [azurerm_api_management_api_operation_policy.operation_policies](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/api_management_api_operation_policy) | resource |
 | [azurerm_api_management_api_policy.api_policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/api_management_api_policy) | resource |
+| [time_sleep.wait_for_import_operations](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) | resource |
 
 ## Inputs
 
@@ -157,7 +160,7 @@ No modules.
 | <a name="input_version_description"></a> [version\_description](#input\_version\_description) | description of the API version | `string` | `null` | no |
 | <a name="input_source_api_id"></a> [source\_api\_id](#input\_source\_api\_id) | the ID of the source API from which this API is derived | `string` | `null` | no |
 | <a name="input_operations"></a> [operations](#input\_operations) | List of operations to create for the API | <pre>list(object({<br>    operation_id = string<br>    display_name = string<br>    method       = string<br>    url_template = string<br>    description  = optional(string)<br>  }))</pre> | `[]` | no |
-| <a name="input_operation_policies"></a> [operation\_policies](#input\_operation\_policies) | List of operation policies to apply | <pre>list(object({<br>    api_name     = string<br>    operation_id = string<br>    xml_content  = optional(string)<br>    xml_link     = optional(string)<br>  }))</pre> | `[]` | no |
+| <a name="input_operation_policies"></a> [operation\_policies](#input\_operation\_policies) | List of operation policies to apply | <pre>list(object({<br>    operation_id = string<br>    xml_content  = optional(string)<br>    xml_link     = optional(string)<br>  }))</pre> | `[]` | no |
 
 ## Outputs
 

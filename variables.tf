@@ -214,7 +214,6 @@ variable "operations" {
 variable "operation_policies" {
   description = "List of operation policies to apply"
   type = list(object({
-    api_name     = string
     operation_id = string
     xml_content  = optional(string)
     xml_link     = optional(string)
