@@ -92,5 +92,33 @@ module "apim_api" {
     xml_content = file("terratest-api.policy.xml")
   }
 
-  depends_on = [module.apim]
+  operations = [
+    {
+      operation_id = "getApiResource"
+      display_name = "GET API Resource"
+      method       = "GET"
+      url_template = "/resource"
+      description  = "Get API Resource"
+    },
+    {
+      operation_id = "deleteApiResource"
+      display_name = "DELETE API Resource"
+      method       = "DELETE"
+      url_template = "/resource"
+      description  = "Delete API Resource"
+    }
+  ]
+
+  operation_policies = [
+    {
+      api_name     = var.name
+      operation_id = "deleteApiResource"
+      xml_content  = file("deleteApiResource.policy.xml")
+    },
+    {
+      api_name     = var.name
+      operation_id = "getApiResource"
+      xml_content  = file("getApiResource.policy.xml")
+    }
+  ]
 }
