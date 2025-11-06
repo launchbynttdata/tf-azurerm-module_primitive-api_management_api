@@ -71,14 +71,6 @@ resource "azurerm_api_management_api_operation" "operations" {
   description         = try(each.value.description, null)
 }
 
-resource "time_sleep" "wait_for_import_operations" {
-  count = var.import != null && length(var.operations) == 0 ? 1 : 0
-
-  depends_on = [azurerm_api_management_api.api]
-
-  create_duration = "120s"
-}
-
 resource "azurerm_api_management_api_operation_policy" "operation_policies" {
   for_each = {
     for op in var.operation_policies :
