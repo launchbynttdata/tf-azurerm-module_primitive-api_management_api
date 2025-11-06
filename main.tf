@@ -57,7 +57,7 @@ resource "azurerm_api_management_api_policy" "api_policy" {
 
 resource "azurerm_api_management_api_operation" "operations" {
   for_each = {
-    for op in var.operations :
+    for op in coalesce(var.operations, []) :
     op.operation_id => op
   }
 
@@ -73,7 +73,7 @@ resource "azurerm_api_management_api_operation" "operations" {
 
 resource "azurerm_api_management_api_operation_policy" "operation_policies" {
   for_each = {
-    for op in var.operation_policies :
+    for op in coalesce(var.operation_policies, []) :
     op.operation_id => op
     if length(trim(op.operation_id, " ")) > 0
   }
