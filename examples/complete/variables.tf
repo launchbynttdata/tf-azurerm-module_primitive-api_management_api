@@ -191,19 +191,6 @@ variable "description" {
   default     = null
 }
 
-variable "import" {
-  type = object({
-    content_format = string
-    content_value  = string
-  })
-  description = "options for importing an API"
-  default     = null
-  validation {
-    condition     = var.import == null || can(regex("^(openapi|openapi\\+json|openapi\\+json-link|openapi-link|swagger-json|swagger-link-json|wadl-link-json|wadl-xml|wsdl|wsdl-link)$", var.import.content_format))
-    error_message = "The content_format must be one of the following: openapi, openapi+json, openapi+json-link, openapi-link, swagger-json, swagger-link-json, wadl-link-json, wadl-xml, wsdl, wsdl-link."
-  }
-}
-
 variable "license" {
   type = object({
     name = optional(string, null)
@@ -211,20 +198,6 @@ variable "license" {
   })
   description = "license information for the API"
   default     = null
-}
-
-variable "policy" {
-  type = object({
-    xml_content = optional(string)
-    xml_link    = optional(string)
-  })
-  description = "Policy to apply to the API. Either xml_content or xml_link must be provided"
-  default     = null
-
-  validation {
-    condition     = var.policy == null || try(one(compact([var.policy.xml_content, var.policy.xml_link])) != null, false)
-    error_message = "One of xml_content or xml_link must be provided, but not both"
-  }
 }
 
 variable "service_url" {
