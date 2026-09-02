@@ -20,7 +20,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestApiManagementModule(t *testing.T, ctx types.TestContext) {
+func TestComposableApiManagementModule(t *testing.T, ctx types.TestContext) {
 	subscriptionId := os.Getenv("ARM_SUBSCRIPTION_ID")
 	if len(subscriptionId) == 0 {
 		t.Fatal("ARM_SUBSCRIPTION_ID environment variable is not set")
@@ -31,12 +31,12 @@ func TestApiManagementModule(t *testing.T, ctx types.TestContext) {
 		t.Fatalf("Unable to get credentials: %e\n", err)
 	}
 
-	resourceGroupName := terraform.Output(t, ctx.TerratestTerraformOptions(), "resource_group_name")
-	serviceName := terraform.Output(t, ctx.TerratestTerraformOptions(), "api_management_name")
+	resourceGroupName := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "resource_group_name")
+	serviceName := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "api_management_name")
 
 	t.Run("doesApiManagementApiExist", func(t *testing.T) {
-		apiName := terraform.Output(t, ctx.TerratestTerraformOptions(), "api_name")
-		isCurrent := terraform.Output(t, ctx.TerratestTerraformOptions(), "is_current")
+		apiName := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "api_name")
+		isCurrent := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "is_current")
 
 		options := arm.ClientOptions{
 			ClientOptions: azcore.ClientOptions{
@@ -58,7 +58,7 @@ func TestApiManagementModule(t *testing.T, ctx types.TestContext) {
 	})
 
 	t.Run("doesApiManagementApiRespondWith200", func(t *testing.T) {
-		apiPath := terraform.Output(t, ctx.TerratestTerraformOptions(), "api_path")
+		apiPath := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "api_path")
 
 		options := arm.ClientOptions{
 			ClientOptions: azcore.ClientOptions{
@@ -78,7 +78,7 @@ func TestApiManagementModule(t *testing.T, ctx types.TestContext) {
 
 		hostName := *apim.Properties.HostnameConfigurations[0].HostName
 
-		status := retry.DoWithRetry(t, "Check if the API is up and running", 6, 10*time.Second, func() (string, error) {
+		status := retry.DoWithRetryContext(t, context.Background(), "Check if the API is up and running", 6, 10*time.Second, func() (string, error) {
 			res, err := http.Get(fmt.Sprintf("https://%s/%s", hostName, apiPath))
 			return strconv.FormatInt(int64(res.StatusCode), 10), err
 		})
