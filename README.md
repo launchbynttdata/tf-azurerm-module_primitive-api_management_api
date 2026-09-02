@@ -111,12 +111,6 @@ If `make check` target is successful, developer is good to commit the code to pr
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.0 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~>3.117 |
 
-## Providers
-
-| Name | Version |
-|------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.117.1 |
-
 ## Modules
 
 No modules.
@@ -134,30 +128,30 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | name of the resource group where the APIM exists | `string` | `null` | no |
 | <a name="input_api_management_name"></a> [api\_management\_name](#input\_api\_management\_name) | name of the APIM in which this api will de deployed | `string` | `null` | no |
-| <a name="input_name"></a> [name](#input\_name) | name of the API | `string` | `null` | no |
-| <a name="input_revision"></a> [revision](#input\_revision) | revision of the API | `string` | `null` | no |
 | <a name="input_api_type"></a> [api\_type](#input\_api\_type) | n/a | `string` | `"http"` | no |
-| <a name="input_display_name"></a> [display\_name](#input\_display\_name) | display name of the API | `string` | `null` | no |
-| <a name="input_path"></a> [path](#input\_path) | path of the API | `string` | `null` | no |
-| <a name="input_protocols"></a> [protocols](#input\_protocols) | protocols supported by the API | `list(string)` | <pre>[<br>  "https"<br>]</pre> | no |
 | <a name="input_contact"></a> [contact](#input\_contact) | contact information for the API | <pre>object({<br>    name  = optional(string, null)<br>    email = optional(string, null)<br>    url   = optional(string, null)<br>  })</pre> | `null` | no |
 | <a name="input_description"></a> [description](#input\_description) | description of the API | `string` | `null` | no |
+| <a name="input_display_name"></a> [display\_name](#input\_display\_name) | display name of the API | `string` | `null` | no |
 | <a name="input_import"></a> [import](#input\_import) | options for importing an API | <pre>object({<br>    content_format = string<br>    content_value  = string<br>  })</pre> | `null` | no |
 | <a name="input_license"></a> [license](#input\_license) | license information for the API | <pre>object({<br>    name = optional(string, null)<br>    url  = optional(string, null)<br>  })</pre> | `null` | no |
+| <a name="input_name"></a> [name](#input\_name) | name of the API | `string` | `null` | no |
+| <a name="input_operation_policies"></a> [operation\_policies](#input\_operation\_policies) | List of operation policies to apply | <pre>list(object({<br>    operation_id = string<br>    xml_content  = optional(string)<br>    xml_link     = optional(string)<br>  }))</pre> | `[]` | no |
+| <a name="input_operations"></a> [operations](#input\_operations) | List of operations to create for the API | <pre>list(object({<br>    operation_id = string<br>    display_name = string<br>    method       = string<br>    url_template = string<br>    description  = optional(string)<br>  }))</pre> | `[]` | no |
+| <a name="input_path"></a> [path](#input\_path) | path of the API | `string` | `null` | no |
 | <a name="input_policy"></a> [policy](#input\_policy) | Policy to apply to the API. Either xml\_content or xml\_link must be provided | <pre>object({<br>    xml_content = optional(string)<br>    xml_link    = optional(string)<br>  })</pre> | `null` | no |
+| <a name="input_protocols"></a> [protocols](#input\_protocols) | protocols supported by the API | `list(string)` | <pre>[<br>  "https"<br>]</pre> | no |
+| <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | name of the resource group where the APIM exists | `string` | `null` | no |
+| <a name="input_revision"></a> [revision](#input\_revision) | revision of the API | `string` | `null` | no |
+| <a name="input_revision_description"></a> [revision\_description](#input\_revision\_description) | description of the API revision | `string` | `null` | no |
 | <a name="input_service_url"></a> [service\_url](#input\_service\_url) | the backend service URL for the API | `string` | `null` | no |
 | <a name="input_soap_pass_through"></a> [soap\_pass\_through](#input\_soap\_pass\_through) | whether to pass through SOAP requests without transformation | `bool` | `null` | no |
+| <a name="input_source_api_id"></a> [source\_api\_id](#input\_source\_api\_id) | the ID of the source API from which this API is derived | `string` | `null` | no |
 | <a name="input_subscription_required"></a> [subscription\_required](#input\_subscription\_required) | whether the API requires a subscription key for access | `bool` | `true` | no |
 | <a name="input_terms_of_service_url"></a> [terms\_of\_service\_url](#input\_terms\_of\_service\_url) | URL to the terms of service for the API | `string` | `null` | no |
+| <a name="input_version_description"></a> [version\_description](#input\_version\_description) | description of the API version | `string` | `null` | no |
 | <a name="input_version_number"></a> [version\_number](#input\_version\_number) | the Version number of this API, if this API is versioned. | `string` | `null` | no |
 | <a name="input_version_set_id"></a> [version\_set\_id](#input\_version\_set\_id) | the ID of the version set to which this API belongs | `string` | `null` | no |
-| <a name="input_revision_description"></a> [revision\_description](#input\_revision\_description) | description of the API revision | `string` | `null` | no |
-| <a name="input_version_description"></a> [version\_description](#input\_version\_description) | description of the API version | `string` | `null` | no |
-| <a name="input_source_api_id"></a> [source\_api\_id](#input\_source\_api\_id) | the ID of the source API from which this API is derived | `string` | `null` | no |
-| <a name="input_operations"></a> [operations](#input\_operations) | List of operations to create for the API | <pre>list(object({<br>    operation_id = string<br>    display_name = string<br>    method       = string<br>    url_template = string<br>    description  = optional(string)<br>  }))</pre> | `[]` | no |
-| <a name="input_operation_policies"></a> [operation\_policies](#input\_operation\_policies) | List of operation policies to apply | <pre>list(object({<br>    operation_id = string<br>    xml_content  = optional(string)<br>    xml_link     = optional(string)<br>  }))</pre> | `[]` | no |
 
 ## Outputs
 
@@ -166,8 +160,8 @@ No modules.
 | <a name="output_api_id"></a> [api\_id](#output\_api\_id) | The ID of the API Management API resource. |
 | <a name="output_api_name"></a> [api\_name](#output\_api\_name) | The name of the API Management API resource. |
 | <a name="output_api_path"></a> [api\_path](#output\_api\_path) | The path of the API Management API resource. |
-| <a name="output_revision"></a> [revision](#output\_revision) | The revision of the API Management API resource. |
 | <a name="output_is_current"></a> [is\_current](#output\_is\_current) | Indicates whether the API Management API is the current revision. |
+| <a name="output_revision"></a> [revision](#output\_revision) | The revision of the API Management API resource. |
 | <a name="output_version"></a> [version](#output\_version) | The version of the API Management API resource. |
 | <a name="output_version_set_id"></a> [version\_set\_id](#output\_version\_set\_id) | The ID of the version set to which this API belongs. |
 <!-- END_TF_DOCS -->
